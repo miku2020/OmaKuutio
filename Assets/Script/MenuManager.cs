@@ -10,10 +10,10 @@ public class MenuManager : MonoBehaviour
 {
 
     public CinemachineBrain mainCamera;
-    public CinemachineVirtualCamera frame0_cam;
-    public CinemachineVirtualCamera frame1_cam;
-    public CinemachineVirtualCamera frame2_cam;
-    //public CinemachineVirtualCamera frame2_cam;
+    public CinemachineCamera frame0_cam;
+    public CinemachineCamera frame1_cam;
+    public CinemachineCamera frame2_cam;
+    //public CinemachineCamera frame2_cam;
 
     public GameObject[] frame;
     public GameObject startButton;
@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour
 
     static AudioSource AudioSrc;
 
-    //Ensimmäinen frame asetetaan cam0 mukaisesti
+    //Ensimmï¿½inen frame asetetaan cam0 mukaisesti
     void Start()
     {
         clickSound = Resources.Load<AudioClip>("click");
@@ -59,9 +59,9 @@ public class MenuManager : MonoBehaviour
 
         
     }
-    //Main menu paneelit on jaettu frameihin, niitä aktivoidaan eri kohdissa main menua.
+    //Main menu paneelit on jaettu frameihin, niitï¿½ aktivoidaan eri kohdissa main menua.
 
-    //Menu valikko näkymä
+    //Menu valikko nï¿½kymï¿½
     public void Frame1()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -71,7 +71,7 @@ public class MenuManager : MonoBehaviour
         frame1_cam.gameObject.SetActive(true);
         frame2_cam.gameObject.SetActive(false);
     }
-   //Press any key näkymä
+   //Press any key nï¿½kymï¿½
     public void Frame0()
     {
         
@@ -80,7 +80,7 @@ public class MenuManager : MonoBehaviour
         frame0_cam.gameObject.SetActive(true);
         frame2_cam.gameObject.SetActive(false);
     }
-    //HighScore Näkymä
+    //HighScore Nï¿½kymï¿½
     public void Frame2()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -105,7 +105,7 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         frame[4].SetActive(true);
     }
-    //Menu valikko viivästys
+    //Menu valikko viivï¿½stys
     IEnumerator Framedelay1()
     {
         frame[1].SetActive(false);
@@ -115,7 +115,7 @@ public class MenuManager : MonoBehaviour
         frame[3].SetActive(true);
         
     }
-    //Press any key näkymä viivästys
+    //Press any key nï¿½kymï¿½ viivï¿½stys
     IEnumerator Framedelay0()
     {
         frame[3].SetActive(false);
@@ -125,13 +125,13 @@ public class MenuManager : MonoBehaviour
         frame[0].SetActive(true);
         
     }
-    //Exit näppäin
+    //Exit nï¿½ppï¿½in
     public void Quit()
     {
         Application.Quit();
     }
     
-    //Aloitetaan ensimmäinen taso eli start nappi.
+    //Aloitetaan ensimmï¿½inen taso eli start nappi.
     public void LoadFirstScene()
     {
         
@@ -160,7 +160,7 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
-    //Highscore näkymä
+    //Highscore nï¿½kymï¿½
     public void highscoreView()
     {
         frame[3].SetActive(false);
@@ -192,7 +192,7 @@ public class MenuManager : MonoBehaviour
             Debug.Log("File not found");
         }
     }
-    //Enter name näkymä, kun ollaan painettu start button
+    //Enter name nï¿½kymï¿½, kun ollaan painettu start button
     public void StartButton()
     {
         AudioSrc.PlayOneShot(clickSound);

@@ -6,7 +6,6 @@ public class RotatePlayer : MonoBehaviour
 {
     public SC_PickItem gravityrev,gravityrev1,gravityrev2;
     public int buttonclicks=0;
-    bool reversed = false;
     // Start is called before the first frame update
     private void OnEnable()
     {

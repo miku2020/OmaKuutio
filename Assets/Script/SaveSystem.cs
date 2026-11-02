@@ -1,35 +1,23 @@
 
 using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
     public static void SavePlayer(Player player)
     {
         //Laitetaan arvot playerdata luokkaan, ja tallennetaan tiedot binary formatterilla persistent data path polkuun.
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.fun";
-        FileStream stream = new FileStream(path, FileMode.Create);
-        
+        string path = Application.persistentDataPath + "/player.json";
         PlayerData data = new PlayerData(player);
-
-        formatter.Serialize(stream, data);
-        stream.Close();
+        File.WriteAllText(path, JsonUtility.ToJson(data));
     }
     public static PlayerData LoadPlayer()
     {
-        //Avataan Binääritiedosto ja ladataan sieltä arvot playerdata luokkaan, josta ne ladataan pelaajalle..
-        string path = Application.persistentDataPath + "/player.fun";
+        //Avataan Binï¿½ï¿½ritiedosto ja ladataan sieltï¿½ arvot playerdata luokkaan, josta ne ladataan pelaajalle..
+        string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            PlayerData data=formatter.Deserialize(stream) as PlayerData;
-            stream.Close();
-
-            return data;
+            return JsonUtility.FromJson<PlayerData>(File.ReadAllText(path));
         }
         else
         {
@@ -41,10 +29,13 @@ public static class SaveSystem
     {
         //Poistetaan kaikki tiedot
 
-        string Path = Application.persistentDataPath + "/player.fun";
-        if (File.Exists(Path))
+        foreach (string name in new[] { "/player.json", "/player.fun" })
         {
-            File.Delete(Application.persistentDataPath + "/player.fun");
+            string path = Application.persistentDataPath + name;
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
             
     }

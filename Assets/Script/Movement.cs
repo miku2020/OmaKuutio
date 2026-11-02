@@ -27,7 +27,10 @@ public class Movement : MonoBehaviour
     {
         
         PlayerData data = SaveSystem.LoadPlayer();
-        gravity = data.gravity;
+        if (data != null)
+        {
+            gravity = data.gravity;
+        }
     }
 
     private void OnDisable()

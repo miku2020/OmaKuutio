@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float gravity;
     public CharacterController control;
     public static Player instance;
-    public TimeSpan timePlaying;
+    [NonSerialized] public TimeSpan timePlaying;
     public int health=100;
     public TMP_Text Timertext;
     public float elapsedTime;
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         buttonclick = 0;
         savedgame.SetTrigger("SavedGame");
     }
-    //Funktio joka pysäyttää pelaajan, kun osutaan winboxiin
+    //Funktio joka pysï¿½yttï¿½ï¿½ pelaajan, kun osutaan winboxiin
     public void FreezePosition()
     {
         control.enabled = (false);
